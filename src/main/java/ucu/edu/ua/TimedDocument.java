@@ -1,7 +1,7 @@
 package ucu.edu.ua;
 
 public class TimedDocument extends DocumentDecorator {
-    private static double CONVERT_TO_MS = 1_000_000_000.0;
+    static final double CONVERT_TO_MS = 1_000_000_000.0;
 
     public TimedDocument(Document document) {
         super(document);

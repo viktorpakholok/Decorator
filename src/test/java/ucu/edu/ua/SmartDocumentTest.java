@@ -1,9 +1,12 @@
 package ucu.edu.ua;
 
-import org.junit.jupiter.api.*;
-import java.io.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.io.File;
+
+import org.junit.jupiter.api.Test;
 
 class SmartDocumentTest {
 
@@ -26,14 +29,16 @@ class SmartDocumentTest {
         assertTrue(testImage.exists(), "Test image must exist for OCR test.");
 
         String result = smartDocument.parse(testImage.getPath());
-        assertEquals(result, "Pattern: Decorator\n" + //
-            "\n" + //
-            "Name: Decorator (a.k.a Wrapper)\n" + //
-            "\n" + //
-            "Problem: Attach additional responsibilities to an object dynamically. Decorators\n" + //
-            "provide a flexible alternative to sub classing to extend flexibility\n" + //
-            "\n" + //
-            "Solution: Create a Wrapper that would wrap the object and change it behaviour\n"
+        assertEquals(result, "Pattern: Decorator\n"
+            + "\n"
+            + "Name: Decorator (a.k.a Wrapper)\n"
+            + "\n"
+            + "Problem: Attach additional responsibilities to "
+            + "an object dynamically. Decorators\nprovide a flexible "
+            + "alternative to sub classing to extend flexibility\n"
+            + "\n"
+            + "Solution: Create a Wrapper that would wrap "
+            + "the object and change it behaviour\n"
         );
     }
 }

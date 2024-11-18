@@ -1,10 +1,14 @@
 package ucu.edu.ua;
 
-import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class TimedDocumentTest {
+
+    static final int EXPECTED_TIME_MS = 5000000;
+    static final int TOLERANCE_MS = 5000000;
 
     @Test
     void testParseTiming() {
@@ -18,14 +22,10 @@ class TimedDocumentTest {
 
         long elapsedTime = endTime - startTime;
 
-        int expectedTimeMs = 5000000;
-        int toleranceMs = 5000000;
-
         // assertEquals(elapsedTime, 10);
-        assertTrue(elapsedTime >= expectedTimeMs - toleranceMs && elapsedTime <= expectedTimeMs + toleranceMs);
+        assertTrue(elapsedTime >= EXPECTED_TIME_MS - TOLERANCE_MS 
+        && elapsedTime <= EXPECTED_TIME_MS + TOLERANCE_MS);
         assertEquals("Stub Result", result);
 
-        // Test execution timing (verify it runs correctly, not the actual time).
-        // Optionally measure elapsed time here.
     }
 }

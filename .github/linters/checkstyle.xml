@@ -150,7 +150,7 @@
         <!-- http://checkstyle.sourceforge.net/config_imports.html                       -->
         <!-- =========================================================================== -->
         <module name="AvoidStarImport"/>
-        <module name="AvoidStaticImport"/>
+        <!-- <module name="AvoidStaticImport"/> -->
 
         <module name="IllegalImport">
             <property name="illegalPkgs"
