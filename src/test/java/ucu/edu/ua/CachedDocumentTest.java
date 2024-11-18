@@ -8,25 +8,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CachedDocumentTest {
-
-    @BeforeEach
-    void setupDatabase() throws SQLException {
-        try (Connection CONN = DriverManager
-        .getConnection("jdbc:sqlite:db.sqlite")) {
-            try (Statement STMT = CONN.createStatement()) {
-                STMT.execute(
-                    "CREATE TABLE files "
-                    + "(path TEXT PRIMARY KEY, parsed_string TEXT);"
-                );
-            }
-        }
-    }
 
     @Test
     void testParseFromCache() throws SQLException {
