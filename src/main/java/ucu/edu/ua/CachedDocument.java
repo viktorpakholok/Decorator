@@ -8,18 +8,23 @@ import java.sql.SQLException;
 
 // sqlite - embeded || android
 
-public class CachedDocument extends DocumentDecorator{
-    public CachedDocument (Document document) {
+public class CachedDocument extends DocumentDecorator {
+    public CachedDocument(Document document) {
         super(document);
     }
 
     public String parse(String path) {
         String result = null;
-        try (Connection conn = DriverManager.getConnection("jdbc:sqlite:db.sqlite");
-            PreparedStatement stmt = conn.prepareStatement("SELECT parsed_string FROM files WHERE path = ?")) {
+        try (Connection CONN = DriverManager.getConnection(
+            "jdbc:sqlite:db.sqlite"
+            );
+
+            PreparedStatement STMT = CONN.prepareStatement(
+                "SELECT parsed_string FROM files WHERE path = ?"
+            )) {
             
-            stmt.setString(1, path);
-            ResultSet rs = stmt.executeQuery();
+            STMT.setString(1, path);
+            ResultSet rs = STMT.executeQuery();
             
             if (rs.next()) {
                 System.out.println("Extraced from cache");
@@ -27,10 +32,12 @@ public class CachedDocument extends DocumentDecorator{
             } else {
                 result = super.parse(path);
 
-                try (PreparedStatement insertStmt = conn.prepareStatement("INSERT INTO files (path, parsed_string) VALUES (?, ?)")) {
-                    insertStmt.setString(1, path);
-                    insertStmt.setString(2, result);
-                    insertStmt.executeUpdate();
+                try (PreparedStatement INSERT_STMT = CONN.prepareStatement(
+                    "INSERT INTO files (path, parsed_string) VALUES (?, ?)"
+                    )) {
+                    INSERT_STMT.setString(1, path);
+                    INSERT_STMT.setString(2, result);
+                    INSERT_STMT.executeUpdate();
                 }
             }
             

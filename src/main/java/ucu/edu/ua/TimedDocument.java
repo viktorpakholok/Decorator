@@ -1,6 +1,8 @@
 package ucu.edu.ua;
 
-public class TimedDocument extends DocumentDecorator{
+public class TimedDocument extends DocumentDecorator {
+    private static double CONVERT_TO_MS = 1_000_000_000.0;
+
     public TimedDocument(Document document) {
         super(document);
     }
@@ -12,7 +14,9 @@ public class TimedDocument extends DocumentDecorator{
 
         long endTime = System.nanoTime();
         long elapsedTime = endTime - startTime;
-        System.out.println("Elapsed time in nanoseconds: " + elapsedTime/1_000_000_000.0);
+        System.out.println(
+            "Elapsed time in nanoseconds: " + elapsedTime/CONVERT_TO_MS
+        );
 
         return result;
     }
